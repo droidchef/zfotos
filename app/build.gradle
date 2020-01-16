@@ -45,7 +45,11 @@ dependencies {
     // Koin for Android Architecture ViewModel
     implementation "org.koin:koin-android-viewmodel:$koin_version"
 
-
+    // Okhttp Network Logging Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    // OkHttp for Networking
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttp_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
