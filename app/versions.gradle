@@ -5,4 +5,9 @@ ext {
     koin_version = "2.0.1"
 
     retrofit_version = "2.6.1"
+
+    rx_android_version = "2.1.1"
+    rx_java_version = "2.2.10"
+    rx_kotlin_version = "2.4.0"
+
 }
