@@ -3,4 +3,6 @@ ext {
     okhttp_version = "4.2.0"
     // Stable Koin Version
     koin_version = "2.0.1"
+
+    retrofit_version = "2.6.1"
 }
