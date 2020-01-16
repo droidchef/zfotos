@@ -6,7 +6,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 
-class NetworkFactory {
+class NetworkFactory(private val isDebug: Boolean = BuildConfig.DEBUG) {
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -20,7 +20,7 @@ class NetworkFactory {
             connectTimeout(60, TimeUnit.SECONDS)
             readTimeout(60, TimeUnit.SECONDS)
 
-            if (BuildConfig.DEBUG) addInterceptor(loggingInterceptor)
+            if (isDebug) addInterceptor(loggingInterceptor)
 
         }
 
