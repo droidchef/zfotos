@@ -4,6 +4,7 @@ import android.app.Application
 import co.droidchef.zfotos.di.apiModule
 import co.droidchef.zfotos.di.applicationModule
 import co.droidchef.zfotos.di.networkModule
+import co.droidchef.zfotos.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,7 +17,7 @@ class ZFotosApplication : Application() {
         startKoin {
             androidContext(this@ZFotosApplication)
             androidLogger(Level.DEBUG)
-            modules(listOf(apiModule, networkModule, applicationModule))
+            modules(listOf(apiModule, networkModule, applicationModule, viewModelModule))
         }
     }
 }

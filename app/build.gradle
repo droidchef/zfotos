@@ -38,6 +38,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
 
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
     // Koin for Android
     implementation "org.koin:koin-android:$koin_version"
     // Koin for Lifecycle scoping
