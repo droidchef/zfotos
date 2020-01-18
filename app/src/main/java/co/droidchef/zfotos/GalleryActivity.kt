@@ -2,6 +2,7 @@ package co.droidchef.zfotos
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import co.droidchef.zfotos.butler.Butler
 import co.droidchef.zfotos.ui.main.GalleryFragment
 
 class GalleryActivity : AppCompatActivity() {
@@ -16,4 +17,8 @@ class GalleryActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStop() {
+        Butler.shutDown()
+        super.onStop()
+    }
 }

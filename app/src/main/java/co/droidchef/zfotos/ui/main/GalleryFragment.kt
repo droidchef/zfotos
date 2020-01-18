@@ -33,8 +33,7 @@ class GalleryFragment : Fragment() {
 
     private val galleryAdapter: GalleryAdapter by lazy {
         val sideLength = COLUMNS.getGridItemSize()
-
-        GalleryAdapter(context!!, arrayListOf(), sideLength).apply {
+        GalleryAdapter(arrayListOf(), sideLength).apply {
             setHasStableIds(true)
         }
     }
@@ -81,25 +80,18 @@ class GalleryFragment : Fragment() {
             outRect: Rect, view: View, parent: RecyclerView,
             state: RecyclerView.State
         ) {
+            outRect.bottom = verticalSpaceHeight
             when ((view.layoutParams as GridLayoutManager.LayoutParams).spanIndex) {
                 0 -> {
-                    outRect.bottom = verticalSpaceHeight
                     outRect.right = horizontalSpaceWidth / 2
-                    outRect.top = 0
-                    outRect.left = 0
 
                 }
                 1 -> {
-                    outRect.top = 0
                     outRect.left = horizontalSpaceWidth / 2
                     outRect.right = horizontalSpaceWidth / 2
-                    outRect.bottom = verticalSpaceHeight
                 }
                 2 -> {
-                    outRect.top = 0
                     outRect.left = horizontalSpaceWidth / 2
-                    outRect.right = 0
-                    outRect.bottom = verticalSpaceHeight
                 }
             }
 

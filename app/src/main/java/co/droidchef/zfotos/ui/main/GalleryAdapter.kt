@@ -1,22 +1,31 @@
 package co.droidchef.zfotos.ui.main
 
-import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import co.droidchef.zfotos.R
+import co.droidchef.zfotos.butler.Butler
 import co.droidchef.zfotos.data.response.PhotosResponse
 
 class GalleryAdapter(
-    private val context: Context,
     private val pictures: ArrayList<PhotosResponse.Result.Picture>,
     private val gridCellSideSize: Int
 ) : RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
+
+    private val imageViewLayoutParams : FrameLayout.LayoutParams by lazy {
+        FrameLayout.LayoutParams(gridCellSideSize, gridCellSideSize)
+    }
+
+    fun addPictures(listOfPictures: ArrayList<PhotosResponse.Result.Picture>) {
+        pictures.addAll(listOfPictures)
+    }
+
+    override fun getItemCount(): Int = pictures.size
+
+    override fun getItemId(position: Int): Long = pictures[position].id
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -28,49 +37,27 @@ class GalleryAdapter(
         )
     }
 
-    override fun getItemCount(): Int = pictures.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(gridCellSideSize, position, context, pictures[position])
+        holder.bind(imageViewLayoutParams, pictures[position])
     }
 
-    override fun getItemId(position: Int): Long {
-        return pictures[position].id
-    }
-
-    fun addPictures(listOfPictures: ArrayList<PhotosResponse.Result.Picture>) {
-        pictures.addAll(listOfPictures)
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        Butler.cancelLoad(holder.imageView)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val imageView: ImageView = itemView.findViewById(R.id.iv_preview)
-        private val textView: TextView = itemView.findViewById(R.id.iv_text)
+        val imageView: ImageView = itemView.findViewById(R.id.iv_preview)
 
-        fun bind(
-            size: Int,
-            position: Int,
-            context: Context,
-            picture: PhotosResponse.Result.Picture
-        ) {
+        fun bind(layoutParams: FrameLayout.LayoutParams, picture: PhotosResponse.Result.Picture) {
 
-            // Adds a simple drawable to verify the recycler performance
-            // with the size being pre calculated and set on the image view
-            // measure's shouldn't happen for each cell while scroll
             imageView.apply {
-                val layoutParamsWithSize = FrameLayout.LayoutParams(size, size)
-                layoutParams = layoutParamsWithSize
-                setImageDrawable(context.getDrawable(R.drawable.ic_launcher_background))
+                this.layoutParams = layoutParams
+                tag = picture.id
             }
 
-
-            // Adds a text overlay to see how the grid items are being drawn so far.
-            textView.text = "$position"
-            textView.textSize = 36.0f
-            textView.setTextColor(Color.WHITE)
-
-            // This is the thumbnail that will be loaded into the view.
-            println("Thumbnail to be loaded -> ${picture.thumbnail}")
+            Butler.load(picture.large, imageView, R.drawable.ic_launcher_background)
 
         }
     }

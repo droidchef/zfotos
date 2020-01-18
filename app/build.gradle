@@ -63,6 +63,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
     implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
 
+    implementation 'com.jakewharton:disklrucache:2.0.2'
+
     testImplementation "io.mockk:mockk:$mockk_version"
 
     testImplementation 'junit:junit:4.12'
