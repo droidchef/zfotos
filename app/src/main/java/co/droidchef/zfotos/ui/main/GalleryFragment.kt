@@ -3,9 +3,7 @@ package co.droidchef.zfotos.ui.main
 import android.graphics.Point
 import android.graphics.Rect
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -47,6 +45,11 @@ class GalleryFragment : Fragment() {
 
     private val layoutManager: GridLayoutManager by lazy {
         GridLayoutManager(context, COLUMNS)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -98,5 +101,17 @@ class GalleryFragment : Fragment() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.gallery_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+            R.id.menu_item_refresh -> {
+                viewModel.refresh()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

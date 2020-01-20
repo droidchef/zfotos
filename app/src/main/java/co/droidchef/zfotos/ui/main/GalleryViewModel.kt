@@ -44,5 +44,8 @@ class GalleryViewModel(private val photosService: PhotosService) : ViewModel() {
         )
     }
 
+    fun refresh() {
+        fetchPhotos()
+    }
 
 }
