@@ -1,9 +1,8 @@
-package co.droidchef.zfotos
+package co.droidchef.zfotos.feature.gallery
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import co.droidchef.zfotos.butler.Butler
-import co.droidchef.zfotos.ui.main.GalleryFragment
+import co.droidchef.zfotos.R
 
 class GalleryActivity : AppCompatActivity() {
 
@@ -12,13 +11,11 @@ class GalleryActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, GalleryFragment.newInstance())
+                .replace(R.id.container,
+                    GalleryFragment.newInstance()
+                )
                 .commitNow()
         }
     }
 
-    override fun onStop() {
-        Butler.shutDown()
-        super.onStop()
-    }
 }

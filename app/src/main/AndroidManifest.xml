@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".ZFotosApplication">
-        <activity android:name=".GalleryActivity">
+        <activity android:name=".feature.gallery.GalleryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
