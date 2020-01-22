@@ -14,7 +14,7 @@ import co.droidchef.zfotos.butler.procurement.HttpDownloader
 import co.droidchef.zfotos.networking.NetworkFactory
 import co.droidchef.zfotos.networking.RetrofitFactory
 import co.droidchef.zfotos.networking.service.PhotosService
-import co.droidchef.zfotos.ui.main.GalleryViewModel
+import co.droidchef.zfotos.feature.gallery.GalleryViewModel
 import co.droidchef.zfotos.utils.ViewModelSchedulersProvider
 import com.google.gson.GsonBuilder
 import com.jakewharton.disklrucache.DiskLruCache
@@ -26,7 +26,14 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
 val viewModelModule = module {
-    viewModel { GalleryViewModel(get()) }
+    viewModel {
+        GalleryViewModel(
+            get(),
+            get(),
+            ViewModelSchedulersProvider()
+        )
+    }
+}
 
 val butlerModule = module {
 
