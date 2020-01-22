@@ -66,6 +66,7 @@ dependencies {
     implementation 'com.jakewharton:disklrucache:2.0.2'
     implementation "com.jakewharton:disklrucache:$disklru_cache_version"
 
+    implementation "com.facebook.shimmer:shimmer:$fb_shimmer_version"
     testImplementation "io.mockk:mockk:$mockk_version"
 
     testImplementation 'junit:junit:4.12'
