@@ -14,7 +14,7 @@ class ZFotosApplication : Application() {
         startKoin {
             androidContext(this@ZFotosApplication)
             androidLogger(Level.DEBUG)
-            modules(listOf(apiModule, networkModule, applicationModule, viewModelModule))
+            modules(listOf(butlerModule, apiModule, networkModule, applicationModule, viewModelModule))
         }
 
     }
