@@ -1,4 +1,4 @@
-package co.droidchef.zfotos.butler
+package co.droidchef.zfotos.butler.cache
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -136,6 +136,7 @@ class DiskCacheTest {
 
         verify {
             key.md5()
+            diskLruCache.get("348a448a51d1e0f0f5eee42337d12adc")
         }
 
         assertEquals(output, bmp)

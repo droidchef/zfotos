@@ -1,4 +1,4 @@
-package co.droidchef.zfotos.butler
+package co.droidchef.zfotos.butler.cache
 
 import android.graphics.Bitmap
 import co.droidchef.zfotos.butler.cache.DoubleStoryCache
